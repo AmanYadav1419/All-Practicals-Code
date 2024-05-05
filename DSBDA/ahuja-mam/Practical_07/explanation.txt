@@ -1,0 +1,119 @@
+# Tokenization
+
+Tokenization: Tokenization is the process of splitting the document into individual words or tokens. In Python, you can use the Natural Language Toolkit (NLTK) library to perform tokenization.
+
+line = "This is a sample document. It contains multiple sentences."
+
+o/p : ['This', 'is', 'a', 'sample', 'document', '.', 'It', 'contains', 'multiple', 'sentences', '.']
+
+_-------------------------------------------------------------------------------------------------------------_
+
+#POS tagging
+
+POS tagging involves assigning parts of speech tags to each token in the document. NLTK provides functions for POS tagging as well.
+
+o/p: [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('sample', 'JJ'), ('document', 'NN'), ('.', '.'), ('It', 'PRP'), ('contains', 'VBZ'), ('multiple', 'JJ'), ('sentences', 'NNS'), ('.', '.')]
+
+_-------------------------------------------------------------------------------------------------------------_
+
+#Stop word removal
+
+Stop words are commonly occurring words (e.g., "the," "is," "a") that are often removed from the text as they don't carry significant meaning. NLTK provides a list of common stop words that you can use.
+
+line = "This is a sample document. It contains multiple sentences."
+o/p : ['sample', 'document', '.', 'contains', 'multiple', 'sentences', '.']
+
+_-------------------------------------------------------------------------------------------------------------_
+
+# examples of stemming :
+
+Certainly! Here are some examples of stemming using the Porter stemming algorithm, which is a widely used stemming algorithm:
+
+1) Word: "Running"
+   Stemmed Form: "Run"
+
+2) Word: "Jumps"
+   Stemmed Form: "Jump"
+
+3) Word: "Dancing"
+   Stemmed Form: "Danc"
+
+4) Word: "Easily"
+   Stemmed Form: "Easili"
+
+5) Word: "Books"
+   Stemmed Form: "Book"
+
+6) Word: "Playing"
+   Stemmed Form: "Play"
+
+7) Word: "Cats"
+   Stemmed Form: "Cat"
+
+8) Word: "Developed"
+   Stemmed Form: "Develop"
+
+9) Word: "Going"
+   Stemmed Form: "Go"
+
+10) Word: "Happiness"
+    Stemmed Form: "Happi"
+
+In the examples above, you can see that the words are reduced to their base or root form by removing the suffixes. The resulting stemmed forms may not always be valid English words, but they aim to capture the common base form shared by related words.
+______________________________________________________________________________________________________________________________________
+
+#examples of lemmatization
+
+Lemmatization is the process of determining the base or dictionary form of a word, which is known as the lemma. Unlike stemming, lemmatization considers the context and meaning of the word. It uses lexical knowledge and morphological analysis to transform words to their canonical form.
+
+Certainly! Here are some examples of lemmatization using the WordNet lemmatizer, which is a commonly used lemmatization algorithm:
+
+1) Word: "Running"
+   Lemmatized Form: "Running"
+
+2) Word: "Jumps"
+   Lemmatized Form: "Jump"
+
+3) Word: "Dancing"
+   Lemmatized Form: "Dance"
+
+4) Word: "Easily"
+   Lemmatized Form: "Easily"
+
+5) Word: "Books"
+   Lemmatized Form: "Book"
+
+6) Word: "Playing"
+   Lemmatized Form: "Play"
+
+7) Word: "Cats"
+   Lemmatized Form: "Cat"
+
+8) Word: "Developed"
+   Lemmatized Form: "Develop"
+
+9) Word: "Going"
+   Lemmatized Form: "Go"
+
+10) Word: "Happiness"
+    Lemmatized Form: "Happiness"
+
+In the examples above, you can see that the words are transformed to their canonical or base form. Lemmatization takes into account the part of speech of the word and applies different rules accordingly. As a result, the lemmatized forms are valid English words and represent the base form of the original words.
+
+_------------------------------------------------------------------------------------------------------------_
+
+#TF-IDF
+
+Term Frequency-Inverse Document Frequency (TF-IDF) is a numerical representation of the importance of each word in a document relative to a collection of documents. You can use the TfidfVectorizer from the scikit-learn library to calculate TF-IDF values.
+
+# Feature names (words)
+['and', 'document', 'first', 'is', 'one', 'second', 'the', 'third', 'this']
+
+# TF-IDF matrix
+[[0.         0.40993715 0.57615236 0.40993715 0.         0.         0.57615236 0.         0.40993715]
+ [0.         0.6876236  0.         0.28108867 0.         0.53864762 0.         0.         0.28108867]
+ [0.53864762 0.         0.         0.         0.53864762 0.         0.         0.53864762 0.        ]
+ [0.         0.40993715 0.57615236 0.40993715 0.         0.         0.57615236 0.         0.40993715]]
+
+
+
