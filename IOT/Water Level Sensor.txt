@@ -1,0 +1,15 @@
+Water Level Sensor:
+
+
+void setup() 
+{
+pinMode(A0,INPUT);
+Serial.begin(9600);
+}
+void loop() 
+{
+int val = analogRead(8);
+  	Serial.println(val);
+  	delay(2000);
+}
+

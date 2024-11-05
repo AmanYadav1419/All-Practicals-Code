@@ -1,0 +1,21 @@
+IR Sensor:
+
+
+void setup() 
+{
+// put your setup code here, to run once:
+  	pinMode(2,OUTPUT);
+  	pinMode(3,INPUT);
+  	Serial.begin(9600);
+}
+
+void loop() 
+{
+// put your main code here, to run repeatedlay:
+  	int val = digitalRead(3);
+  	Serial.println(val);
+  	if(val==0)
+    		digitalWrite(2,HIGH);
+  	else
+    		digitalWrite(2,LOW);
+}

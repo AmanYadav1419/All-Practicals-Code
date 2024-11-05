@@ -1,0 +1,19 @@
+Water Soil Sensor:
+
+
+void setup()
+{
+pinMode(A0,INPUT);
+pinMode(A1,INPUT);
+Serial.begin(9600);
+}
+void loop() 
+{
+  	int val1 = analogRead(A0);
+  	int val2 = analogRead(A1);
+  	Serial.print("Water Level = ");
+  	Serial.println(val1);
+  	Serial.print("Soil Moisture = ");
+  	Serial.println(val2);
+  	delay(2000);
+}

@@ -1,0 +1,38 @@
+DHT2 Sensor:
+
+
+#include<dht.h>
+#define dh 8
+dht d;
+float t;
+float h;
+void setup() 
+{
+Serial.begin(9600);
+pinMode(2,OUTPUT); //Green LED
+pinMode(3,OUTPUT); //Red LED
+}
+void loop() 
+{
+ 	float chk = d.read11(dh);
+  	t = d.temperature;
+  	h = d.humidity;
+  	Serial.print("Temperature = ");
+  	Serial.print(t);
+  	Serial.println("*C");
+  	Serial.print("Humidity = ");
+  	Serial.print(h);
+  	Serial.println("%");
+  	delay(2000);
+  	if(t<=32)
+  	{
+  		digitalWrite(2,HIGH);
+    		digitalWrite(3,LOW);
+  	}
+  	else
+  	{
+    		digitalWrite(3,HIGH);
+    		digitalWrite(2 ,LOW);
+  	}
+  	delay(5000);
+}
