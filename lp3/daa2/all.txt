@@ -1,0 +1,208 @@
+1. Write a program non-recursive and recursive program to calculate Fibonacci numbers
+and analyze their time and space complexity.
+# Non-Recursive (Iterative) Fibonacci Function
+
+def fib_it(n):
+  if n<=1:
+    return n;
+
+  a,b=0,1
+  for _ in range(2,n+1):
+    a,b=b,a+b
+  return b;
+
+n=3;
+print("fibonacci number at position ",n,"is: ",fib_it(n))
+
+# Recursive Fibonacci Function
+
+def fib_rec(n):
+  if n<=1:
+    return n
+
+  return fib_rec(n-1)+fib_rec(n-2);
+
+n=int(input("Enter the number"))
+print(f"ans is :{fib_rec(n)}")
+
+  **************************************************************************************************************************************************
+
+  2. Write a program to solve a fractional Knapsack problem using a greedy method
+
+
+def fractional_knapsack(values, weights, capacity):
+    # Create a list of value-to-weight ratios along with their respective weights
+    items = [(v / w, w) for v, w in zip(values, weights)]
+    # Sort items based on value-to-weight ratio in descending order
+    items.sort(reverse=True, key=lambda x: x[0])
+
+    total_value = 0
+    for ratio, weight in items:
+        if capacity > weight:
+            # Take the whole item
+            capacity -= weight
+            total_value += ratio * weight
+        else:
+            # Take a fraction of the item
+            total_value += ratio * capacity
+            break
+
+    return total_value
+
+# Example usage
+values = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+print("Maximum value (Fractional Knapsack):", fractional_knapsack(values, weights, capacity))
+
+
+
+
+   **************************************************************************************************************************************************
+
+3. Write a program to solve a 0-1 Knapsack problem using dynamic programming or
+branch and bound strategy.
+
+def knapsack_0_1(values, weights, capacity):
+    n = len(values)
+    # Initialize a DP table with 0 values
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    # Populate the DP table
+    for i in range(1, n + 1):
+        for w in range(1, capacity + 1):
+            if weights[i - 1] <= w:
+                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1])
+            else:
+                dp[i][w] = dp[i - 1][w]
+
+    return dp[n][capacity]
+
+# Example usage
+values = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+print("Maximum value (0/1 Knapsack):", knapsack_0_1(values, weights, capacity))
+
+
+   ****************************************************************************************************************************************************
+
+4. Design n-Queens matrix having first Queen placed. Use backtracking to place remaining
+Queens to generate the final n-queen’s matrix.
+
+def print_board(board):
+    for row in board:
+        print(" ".join(row))
+    print()
+
+def is_safe(board, row, col, n):
+    # Check if the column has another queen
+    for i in range(row):
+        if board[i][col] == "Q":
+            return False
+    
+    # Check the upper left diagonal
+    i, j = row, col
+    while i >= 0 and j >= 0:
+        if board[i][j] == "Q":
+            return False
+        i -= 1
+        j -= 1
+
+    # Check the upper right diagonal
+    i, j = row, col
+    while i >= 0 and j < n:
+        if board[i][j] == "Q":
+            return False
+        i -= 1
+        j += 1
+
+    return True
+
+def solve_n_queens(board, row, n):
+    if row >= n:
+        return True
+
+    for col in range(n):
+        if is_safe(board, row, col, n):
+            board[row][col] = "Q"  # Place queen
+            if solve_n_queens(board, row + 1, n):
+                return True
+            board[row][col] = "."  # Backtrack
+
+    return False
+
+def n_queens(n):
+    # Initialize the chessboard
+    board = [["." for _ in range(n)] for _ in range(n)]
+    
+    # Place the first queen in the first row, first column
+    board[0][0] = "Q"
+    
+    # Solve for remaining queens
+    if not solve_n_queens(board, 1, n):
+        print("No solution exists")
+    else:
+        print_board(board)
+
+# Example usage
+n = 8  # Size of the chessboard (you can change it to any N)
+n_queens(n)
+       
+
+*****************************************************************************************************************************
+
+  5. Write a program for quick sort by using deterministic and radomized variant.
+
+import random
+
+# Standard Deterministic Partition
+def partition(arr, low, high):
+    pivot = arr[high]  # Pivot as the last element (deterministic)
+    i = low - 1
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+# Deterministic Quick Sort
+def quick_sort_deterministic(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort_deterministic(arr, low, pi - 1)
+        quick_sort_deterministic(arr, pi + 1, high)
+
+# Randomized Partition
+def partition_randomized(arr, low, high):
+    rand_index = random.randint(low, high)  # Select random pivot
+    arr[rand_index], arr[high] = arr[high], arr[rand_index]  # Swap with the last element
+    return partition(arr, low, high)  # Call the normal partition
+
+# Randomized Quick Sort
+def quick_sort_randomized(arr, low, high):
+    if low < high:
+        pi = partition_randomized(arr, low, high)
+        quick_sort_randomized(arr, low, pi - 1)
+        quick_sort_randomized(arr, pi + 1, high)
+
+# Sample usage
+if __name__ == "__main__":
+    # Taking array input from the user
+    arr = list(map(int, input("Enter the elements of the array separated by space: ").split()))
+    n = len(arr)
+
+    # Deterministic Quick Sort
+    quick_sort_deterministic(arr, 0, n - 1)
+    print("Sorted array (Deterministic):", arr)
+
+    # Reset the array to its original unsorted state (ask the user again)
+    arr = list(map(int, input("Enter the elements of the array again (for randomized quicksort): ").split()))
+
+    # Randomized Quick Sort
+    quick_sort_randomized(arr, 0, n - 1)
+    print("Sorted array (Randomized):", arr)
+                        
+
+  
